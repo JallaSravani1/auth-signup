@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login - Smart Learning Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+        <form class="login-form" action="/login" method="POST">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="separator"><span>OR</span></div>
+
+        <p class="signup-link">New here? <a href="signup.html">Create an Account</a></p>
+    </div>
+
+    <script>
+        const form = document.querySelector(".login-form");
+      
+        form.addEventListener("submit", function(event) {
+          event.preventDefault();
+      
+          const email = form.email.value;
+          const password = form.password.value;
+      
+          // Fetch the user by email
+          const storedUser = localStorage.getItem("user_" + email);
+      
+          if (storedUser) {
+            const user = JSON.parse(storedUser);
+      
+            if (user.password === password) {
+              alert("Login successful! Welcome " + user.name + " 😊");
+              window.location.href = "main.html";
+            } else {
+              alert("Incorrect password!");
+            }
+          } else {
+            alert("User not found. Please sign up first!");
+          }
+        });
+      </script>
+         
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup - Smart Learning Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container"> <!-- Same class as login -->
+    <h2>Create Your Account</h2>
+
+    <form class="login-form" onsubmit="signup(event)">
+      <label>Name</label>
+      <input type="text" id="signupName" placeholder="Enter your name" required>
+
+      <label>Email</label>
+      <input type="email" id="signupEmail" placeholder="Enter your email" required>
+
+      <label>Password</label>
+      <input type="password" id="signupPassword" placeholder="Create a password" required>
+
+      <button onclick="signup(event)">Sign Up</button>
+
+    </form>
+
+    <div class="separator"><span>OR</span></div>
+
+    <p class="signup-link">Already have an account? <a href="login.html">Login</a></p>
+  </div>
+
+  <script>
+    function signup(event) {
+      event.preventDefault();
+  
+      const name = document.getElementById("signupName").value;
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+  
+      if (name && email && password) {
+        // Create a user object
+        const user = {
+          name: name,
+          email: email,
+          password: password
+        };
+  
+        // Save to localStorage (use email as unique key)
+        localStorage.setItem("user_" + email, JSON.stringify(user));
+  
+        alert("Signup successful! You can now login.");
+        window.location.href = "login.html";
+      } else {
+        alert("Please fill out all fields!");
+      }
+    }
+  </script>
+  
+</body>
+</html>
